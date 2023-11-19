@@ -1,7 +1,7 @@
 def f(x):
-    return x ** 3 - 2 * x ** 2 - 5
-x_alt=2
-x_ust=4
+    return x ** 3 + 4 * x ** 2 - 10
+x_alt=1
+x_ust=2
 max_iterasyon=4
 
 def IkiyeBolme_Metodu(x_alt, x_ust, max_iter):
