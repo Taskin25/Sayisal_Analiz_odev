@@ -1,18 +1,27 @@
-import math
-from cmath import cos,sin
+def f(x):
+    return x ** 3 - 2 * x ** 2 - 5
+x_alt=2
+x_ust=4
+max_iterasyon=4
 
-x = math.pi / 5                 # pi/5'in değeri
+def IkiyeBolme_Metodu(x_alt, x_ust, max_iter):
+    iterasyon = 0
 
-tek_terimli = 1 - sin(0) * x        # cos(x)'in türevi = -sin(x)'tir
-iki_terimli = 1 - pow(x,2) / math.factorial(2)   #cos(x)'in ikinci türevi - cos(x)
-gercek = math.cos(x)                      #gerçek değerimizi "gercek" adlı değişkene atıyoruz
-birinci_kesme_h = gercek - tek_terimli
-ikinci_kesme_h = gercek - iki_terimli
+    while iterasyon < max_iter:
+        x_kok= (x_alt + x_ust) / 2
 
-print("***************************************************")
-print("TEK TERİMLİ TAYLOR SERİSİ: ",tek_terimli)
-print("İKİ TERİMLİ TAYLOR SERİSİ = " ,iki_terimli)
-print("COS(pi/5)'in DEĞERİ: ",gercek)
-print("BİRİNCİ KESME HATASI: ",birinci_kesme_h)
-print("İKİNCİ KESME HATASI: ",ikinci_kesme_h)
-print("***************************************************")
+        if f(x_kok) == 0:
+            break
+        elif f(x_kok)*f(x_alt) < 0:
+            x_ust=x_kok
+        else:
+            x_alt=x_kok
+
+        iterasyon +=1
+
+    return (x_alt + x_ust) / 2
+
+
+sonuc = IkiyeBolme_Metodu(x_alt,x_ust,max_iterasyon)
+
+print("denklemin kökü: {}".format(sonuc))
